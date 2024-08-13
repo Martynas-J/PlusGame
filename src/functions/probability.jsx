@@ -1,7 +1,6 @@
 import { bonus } from "@/var/variables";
 
 export const probabilities = (plus, itemClass) => {
-  console.log(".............." + itemClass);
   let density;
 
   switch (itemClass) {

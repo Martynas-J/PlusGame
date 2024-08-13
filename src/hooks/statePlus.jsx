@@ -19,22 +19,13 @@ const useStatePlus = () => {
   const [power, setPower] = useState(7);
 
   const [weapons, setWeapons] = useState([
-    { name: "Sword", price: 5, class: "normal", plus: 1 },
-    { name: "Sword", price: 5, class: "rare", plus: 5 },
-    { name: "Sword", price: 5, class: "epic", plus: 6 },
-    { name: "Dagger", price: 10, class: "legendary", plus: 7 },
-    { name: "Staff", price: 15, class: "nova", plus: 8 },
-    { name: "Staff", price: 15, class: "nova", plus: 9 },
-    { name: "Staff", price: 15, class: "nova", plus: 10 },
-    { name: "Staff", price: 15, class: "nova", plus: 11 },
-    { name: "Staff", price: 15, class: "normal", plus: 12 },
-    { name: "Staff", price: 15, class: "rare", plus: 13 },
-    { name: "Staff", price: 15, class: "epic", plus: 14 },
-    { name: "Staff", price: 15, class: "legendary", plus: 15 },
-    { name: "Staff", price: 15, class: "nova", plus: 16 },
+    { name: "Sword", price: 5, class: "normal", plus: 0 },
+    { name: "Spear", price: 5, class: "rare", plus: 0 },
+    { name: "Dagger", price: 10, class: "legendary", plus: 0 },
+    { name: "Staff", price: 15, class: "nova", plus: 0 },
+
   ]);
   const probability = probabilities(plus, weapons[selectCardIndex]?.class);
-  console.log(probability)
 
   const orSuccess = useCallback(() => {
     return Math.random() * 100 < probability;
