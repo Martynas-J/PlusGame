@@ -9,7 +9,7 @@ const MarketSection = ({ items, onAction, buttonText, buttonColor }) => (
       {items.map((item, i) => (
         <div
           key={item.id + 100000 || i}
-          className="bg-gray-200 rounded-lg p-4 flex justify-between items-center"
+          className="bg-gray-200 rounded-lg p-4 flex flex-col sm:flex-row md:flex-col lg:flex-row gap-1 justify-between items-center"
         >
           <WeaponCard weapon={item} />
           <button
