@@ -24,14 +24,37 @@ const useStatePlus = () => {
     { name: "Sword", price: 5, class: "normal", plus: 0 },
     { name: "Sword", price: 5, class: "normal", plus: 0 },
     { name: "Sword", price: 5, class: "normal", plus: 0 },
-    { name: "Sword", price: 5, class: "normal", plus: 0 },
+    { name: "Sword", price: 5, class: "nova", plus: 0 },
   ]);
-
+  const sortWeaponsByName = (weapons) => {
+    return weapons.slice().sort((a, b) => a.name.localeCompare(b.name));
+  };
   useEffect(() => {
     setItems(weapons.length);
+    setWeapons(sortWeaponsByName(weapons));
   }, [weapons]);
 
+  const getClassBonus = (className) => {
+    switch (className) {
+      case "normal":
+        return 3;
+      case "rare":
+        return 4;
+      case "epic":
+        return 5;
+      case "legendary":
+        return 6;
+      case "nova":
+        return 7;
+      default:
+        return 1;
+    }
+  };
+
   const handleButtonClick = useCallback(() => {
+    if (plus === 16) {
+      return;
+    }
     setLoading(true);
     const newStatus = orSuccess(plus, weapons[selectCardIndex]?.class);
     setTimeout(() => {
@@ -47,6 +70,11 @@ const useStatePlus = () => {
             updatedWeapons[selectCardIndex] = {
               ...updatedWeapons[selectCardIndex],
               plus: newPlus,
+              price:
+                updatedWeapons[selectCardIndex].price +
+                newPlus **
+                  getClassBonus(updatedWeapons[selectCardIndex].class) *
+                  (Math.floor(Math.random() * (newPlus > 5 ? 4 : 2)) + 1),
             };
             return updatedWeapons;
           });

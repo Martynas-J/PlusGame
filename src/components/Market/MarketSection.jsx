@@ -3,7 +3,7 @@ const { default: WeaponCard } = require("../WeaponCard");
 const MarketSection = ({ items, onAction, buttonText, buttonColor }) => (
   <div className="w-full md:w-1/2 bg-white rounded-lg shadow-md p-4">
     <h2 className="text-2xl font-semibold mb-4 text-gray-800 text-center">
-      {buttonText === "Pirkti" ? "Parduodami:" : "Turimi:"}
+      {buttonText === "Pirkti" ? "Parduodami " : "Turimi (-10%)"}
     </h2>
     <div className="space-y-4">
       {items.map((item, i) => (

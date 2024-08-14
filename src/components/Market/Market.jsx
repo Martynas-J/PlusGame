@@ -34,7 +34,7 @@ const Market = ({
 
   const handleSell = (weapon, index) => {
     if (window.confirm("Ar tikrai norite parduoti?")) {
-      setMoney(money + weapon.price);
+      setMoney(money + weapon.price - Math.round(weapon.price * 0.1));
       setWeapons((prev) => prev.filter((_, i) => i !== index));
       setMarketItems((prev) => [...prev, weapon]);
     }

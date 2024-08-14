@@ -1,22 +1,22 @@
 const getClassPriceRange = (className) => {
     switch (className) {
       case "normal":
-        return [50, 100]; // Example price range
+        return [500, 5000]; 
       case "rare":
-        return [150, 300];
+        return [15000, 30000];
       case "epic":
-        return [350, 500];
+        return [35000, 50000];
       case "legendary":
-        return [550, 800];
+        return [550000, 1000000];
       default:
-        return [50, 100];
+        return [500, 100000000];
     }
   };
   
   const getRandomName = () => {
     const names = ["Sword", "Bow", "Axe", "Staff", "Dagger", "Mace", "Hammer", "Wand"];
     const randomIndex = Math.floor(Math.random() * names.length);
-    return names[randomIndex] // Add a number for uniqueness
+    return names[randomIndex]
   };
   
   const getRandomPrice = (className) => {
