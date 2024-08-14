@@ -88,6 +88,10 @@ const Fusion = ({ weapons, setWeapons, selectCardIndex, handleCardClick }) => {
     }, 1500);
   };
 
+  const sortWeaponsByName = (weapons) => {
+    return weapons.slice().sort((a, b) => a.name.localeCompare(b.name));
+  };
+
   return (
     <div className="">
       <h1 className="text-4xl font-extrabold mb-8 text-gray-900 tracking-tight text-center">
@@ -95,7 +99,7 @@ const Fusion = ({ weapons, setWeapons, selectCardIndex, handleCardClick }) => {
       </h1>
       <div className="bg-gradient-to-b from-gray-400 to-gray-100 flex flex-col items-center rounded-md">
         <SlideBar
-          weapons={weapons}
+          weapons={sortWeaponsByName(weapons)}
           selectedWeaponIndex={selectCardIndex}
           handleCardClick={handleSelectCard}
         />
