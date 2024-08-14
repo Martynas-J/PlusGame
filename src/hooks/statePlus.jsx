@@ -1,6 +1,7 @@
-import { probabilities } from "@/functions/probability";
+import { generateRandomMarketItems } from "@/components/Market/generateItems";
+import { orSuccess, probabilities } from "@/functions/probability";
 import { delay } from "@/var/variables";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 const useStatePlus = () => {
   const [plus, setPlus] = useState(0);
@@ -10,30 +11,29 @@ const useStatePlus = () => {
   const [selectCardIndex, setSelectCardIndex] = useState(null);
   const [selectedMenu, setSelectedMenu] = useState("Inventorius");
 
-  const [money, setMoney] = useState(10);
+  const [money, setMoney] = useState(100000);
   const [items, setItems] = useState(5);
   const [powder, setPowder] = useState(2);
   const [elixirs, setElixirs] = useState(5);
   const [pressure, setPressure] = useState(5);
   const [isotopes, setIsotopes] = useState(2);
   const [power, setPower] = useState(7);
+  const [marketItems, setMarketItems] = useState(generateRandomMarketItems(10));
 
   const [weapons, setWeapons] = useState([
     { name: "Sword", price: 5, class: "normal", plus: 0 },
-    { name: "Spear", price: 5, class: "rare", plus: 0 },
-    { name: "Dagger", price: 10, class: "legendary", plus: 0 },
-    { name: "Staff", price: 15, class: "nova", plus: 0 },
-
+    { name: "Sword", price: 5, class: "normal", plus: 0 },
+    { name: "Sword", price: 5, class: "normal", plus: 0 },
+    { name: "Sword", price: 5, class: "normal", plus: 0 },
   ]);
-  const probability = probabilities(plus, weapons[selectCardIndex]?.class);
 
-  const orSuccess = useCallback(() => {
-    return Math.random() * 100 < probability;
-  }, [probability]);
+  useEffect(() => {
+    setItems(weapons.length);
+  }, [weapons]);
 
   const handleButtonClick = useCallback(() => {
     setLoading(true);
-    const newStatus = orSuccess();
+    const newStatus = orSuccess(plus, weapons[selectCardIndex]?.class);
     setTimeout(() => {
       if (newStatus && selectCardIndex !== null) {
         setPlus((prev) => {
@@ -69,7 +69,7 @@ const useStatePlus = () => {
       }
       setLoading(false);
     }, delay);
-  }, [orSuccess, bestPlus, selectCardIndex]);
+  }, [bestPlus, selectCardIndex, plus, weapons]);
 
   return {
     plus,
@@ -91,6 +91,15 @@ const useStatePlus = () => {
     pressure,
     isotopes,
     power,
+    marketItems,
+    setMarketItems,
+    setMoney,
+    setItems,
+    setPowder,
+    setElixirs,
+    setPressure,
+    setIsotopes,
+    setPower,
   };
 };
 

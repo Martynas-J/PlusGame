@@ -5,6 +5,7 @@ const WeaponCard = ({ onClick, weapon, isSelected }) => {
     epic: "text-purple-600 font-extrabold ",
     legendary: "text-orange-600 font-extrabold ",
     nova: "text-blue-600 font-extrabold ",
+    cardFlipped: "bg-gray-800",
     weaponNormal: "bg-white",
     weaponRare: "bg-yellow-400",
     weaponEpic: "bg-purple-600 text-white",
@@ -43,6 +44,8 @@ const WeaponCard = ({ onClick, weapon, isSelected }) => {
         return cardsStyles.weaponLegendary;
       case "nova":
         return cardsStyles.weaponNova;
+      case "flip":
+        return cardsStyles.cardFlipped;
       default:
         return cardsStyles.weaponNormal;
     }

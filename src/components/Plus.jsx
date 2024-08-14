@@ -1,4 +1,3 @@
-
 import WeaponCard from "./WeaponCard";
 import Spinner from "./Spinner";
 import Button from "../components/Button";
@@ -6,15 +5,17 @@ import SlideBar from "./SlideBar";
 
 const Plus = ({
   bestPlus,
-  success,
-  failure,
   selectCardIndex,
   plus,
   loading,
   handleButtonClick,
   weapons,
-  handleCardClick
+  handleCardClick,
+  effect,
 }) => {
+  const success = effect === "success";
+  const failure = effect === "failure";
+
   const cardsStyles = {
     container: "bg-white shadow-lg rounded-lg p-6  ",
     title: "text-2xl font-bold text-gray-800 mb-2",
@@ -41,7 +42,11 @@ const Plus = ({
   };
   return (
     <div className="w-full ">
-      <SlideBar weapons={weapons} selectedWeaponIndex={selectCardIndex} handleCardClick={handleCardClick} />
+      <SlideBar
+        weapons={weapons}
+        selectedWeaponIndex={selectCardIndex}
+        handleCardClick={handleCardClick}
+      />
       <div className={cardsStyles.container}>
         <div>
           <div className="mb-4">
@@ -63,10 +68,7 @@ const Plus = ({
 
             {(selectCardIndex || selectCardIndex === 0) && (
               <div className="w-44">
-                <WeaponCard
-
-                  weapon={weapons[selectCardIndex]}
-                />
+                <WeaponCard weapon={weapons[selectCardIndex]} />
               </div>
             )}
           </div>
