@@ -16,7 +16,7 @@ const getClassPriceRange = (className) => {
   const getRandomName = () => {
     const names = ["Sword", "Bow", "Axe", "Staff", "Dagger", "Mace", "Hammer", "Wand"];
     const randomIndex = Math.floor(Math.random() * names.length);
-    return names[randomIndex] + " " + (Math.floor(Math.random() * 100) + 1); // Add a number for uniqueness
+    return names[randomIndex] // Add a number for uniqueness
   };
   
   const getRandomPrice = (className) => {
